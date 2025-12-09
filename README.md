@@ -1,8 +1,6 @@
 # Radio Streamer
 
-<img width="2600" height="1488" alt="1111" src="https://github.com/user-attachments/assets/2091cbac-fa9a-47fa-8394-bbc8d5f0e871" />
-
-![RPI1](https://github.com/user-attachments/assets/080ec78b-4d18-45e4-94bd-206c82c2e440)<br><br>
+<img width="2600" height="1488" alt="1111" src="https://github.com/user-attachments/assets/2091cbac-fa9a-47fa-8394-bbc8d5f0e871" /><br><br>
 
 Software used for this project:
 1) Raspberry Pi OS Lite, a port of Debian Trixie with no desktop environment (https://www.raspberrypi.com).
@@ -10,3 +8,4 @@ Software used for this project:
 2) FFMPEG, UFW, SSH, RFKILL, LSHW, WPASUPPLICANT, RESOLVCONF, and some custom Bash Scripts.
    
 <br>How to: https://github.com/hubb22/Radio-Streamer/blob/main/How%20to
+![RPI1](https://github.com/user-attachments/assets/080ec78b-4d18-45e4-94bd-206c82c2e440)
