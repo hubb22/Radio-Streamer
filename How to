@@ -238,11 +238,11 @@ $sudo nano /home/YOUR_OS_USER/scripts/streaming.sh
 while [ 1 = 1 ]; do
 	### STREAMING ###
     /bin/ffplay -v 0 -timeout 1000000 -nodisp -autoexit YOUR_RADIO_URL_GOES_HERE > /dev/null
-	### IF THE CONECTION FAILS PERFORM A REBOOT ###
+	### RESTART THE COMPUTER IF THE CONNECTION FAILS ###
 	if ! ping -c 1 -W 2 9.9.9.9 > /dev/null; then
 		/bin/$sudo /sbin/reboot now > /dev/null
 	fi
-    ### OTHERWISE RESTART THE TRANSMISSION ###
+    ### OTHERWISE RESTART THE STREAMING ###
     sleep 3
 done
 
