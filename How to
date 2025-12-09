@@ -11,9 +11,9 @@ You need:
     $diskutil umountDisk /dev/diskXX
     $sudo dd bs=1m if=YOUR_OS_IMAGE.img of=/dev/diskXX
 
-4) Wi-Fi antenna (if your computer or Raspberry Pi doesn't have one and you want to use this interface): https://a.co/d/3hMnroM
+4) Wi-Fi antenna (If your computer or Raspberry Pi doesn't have one and you want to use this interface): https://a.co/d/3hMnroM
 
-5) Bluetooth antenna (if your computer or Raspberry Pi doesn't have one and you want to use this interface): 
+5) Bluetooth antenna (If your computer or Raspberry Pi doesn't have one and you want to use this interface): https://a.co/d/aCBIa5A
 
 6) USB stick for Raspberry Pi: https://a.co/d/9WlAjas
 
