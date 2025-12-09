@@ -8,4 +8,4 @@ Software used for this project:
 
 I used a Raspberry Pi due to its low consumption but you can set it up on any Debian-compatible system.
 
-How to: https://github.com/hubb22/Radio-Streamer/blob/main/How%20to
+<br>How to: https://github.com/hubb22/Radio-Streamer/blob/main/How%20to
