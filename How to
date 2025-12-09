@@ -179,7 +179,19 @@ $sudo apt update && $sudo apt upgrade -y
 
 $sudo apt install ufw ffmpeg -y
 
-$sudo ufw default deny incoming && $sudo ufw default allow outgoing && $sudo ufw allow from 192.168.1.0/24 to any port 22 && $sudo ufw allow from 10.0.0.0/24 to any port 22 && $sudo ufw allow 123/udp && $sudo ufw allow out 123/udp && $sudo ufw allow out 53
+$sudo ufw default deny incoming
+
+$sudo ufw default allow outgoing
+
+$sudo ufw allow from 192.168.1.0/24 to any port 22
+
+$sudo ufw allow from 10.0.0.0/24 to any port 22
+
+$sudo ufw allow 123/udp
+
+$sudo ufw allow out 123/udp
+
+$sudo ufw allow out 53
 
 $sudo ufw show added
 
