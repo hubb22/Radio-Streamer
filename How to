@@ -327,7 +327,7 @@ $sudo dd bs=1m if=/YOUR_USER/PATH/backup.img of=/dev/diskXX
 ------
 
 
-# OR IF YOU ARE RUNNING THE OS FROM AN SD CARD YOU CAN INCREASE THE LIFESPAN OF THE CARD AS FOLLOWS:
+# IF YOU WANT TO RUN THE OS FROM A SD CARD, YOU CAN INCREASE THE LIFESPAN OF IT AS FOLLOWS:
 
 $sudo swapoff --all
 
@@ -345,6 +345,6 @@ tmpfs /var/tmp tmpfs nodev,nosuid,size=50M 0 0
 ------
 
 
-# THE RASPBERRY PI CASE WAS 3D PRINTED WITH THESE FILES:
+# RASPBERRY PI CASE PRINTED WITH THESE FILES:
 
 https://www.thingiverse.com/thing:4384009
