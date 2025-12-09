@@ -362,6 +362,8 @@ EOF
 
 
 
+# Press Ctrl + X and save changes (Y)
+
 $sudo chmod +x /home/YOUR_OS_USER/scripts/reboot.sh
 
 sudo reboot now
