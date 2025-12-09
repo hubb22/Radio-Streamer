@@ -1,1 +1,24 @@
-ETC
+# Radio-Streamer
+
+You need:
+
+1) Debian 13 without GUI: https://www.debian.org or if you're building it on a Raspberry Pi: https://www.raspberrypi.com
+   
+2) BalenaEtcher (https://www.balena.io/etcher) or 'dd command' to create a bootable USB:
+    $diskutil list
+    $diskutil umountDisk /dev/diskXX
+    $sudo dd bs=1m if=YOUR_DEBIAN_IMAGE.img of=/dev/diskXX
+
+4) Wi-Fi antenna (if your computer/Raspberry Pi doesn't have one, and want to use this interface): 
+
+5) Bluetooth antenna (if your computer/Raspberry Pi doesn't have one, and want to use this interface): 
+
+6) USB stick (for Raspberry Pi only): https://a.co/d/9WlAjas
+
+7) Shutdown button (for Raspberry Pi only): Micro USB: https://a.co/d/9Fj24Pe or USB C: https://a.co/d/g3vTr5e
+
+
+-------------------------------------
+
+
+$
