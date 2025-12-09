@@ -131,7 +131,7 @@ key_mgmt=WPA-PSK
 
 # Press Ctrl + X and save changes (Y)
 
-# Do not perform the next steps over SSH
+# DO NOT PERFORM THE NEXT STEPS OVER SSH
 
 $sudo ip link set wlan0 up
 
