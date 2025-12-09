@@ -2,8 +2,10 @@
 
 You need:
 
-1) Debian 13 without GUI: https://www.debian.org or if you're building it on a Raspberry Pi: https://www.raspberrypi.com
-   
+1) If you're building it on a Raspberry Pi you need Raspberry Pi OS Lite: https://www.raspberrypi.com
+
+2) For other computers you need Debian 13 without a GUI: https://www.debian.org
+
 2) BalenaEtcher (https://www.balena.io/etcher) or 'dd command' to create a bootable USB:
     $diskutil list
     $diskutil umountDisk /dev/diskXX
