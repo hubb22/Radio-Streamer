@@ -289,7 +289,7 @@ $sudo reboot now
 
 $sudo nano /boot/firmware/config.txt
 
-# (ADD AT THE END):
+# ADD AT THE END:
 
 
 
@@ -327,11 +327,13 @@ $sudo dd bs=1m if=/YOUR_USER/PATH/backup.img of=/dev/diskXX
 ------
 
 
-# IF YOU WANT TO RUN THE OS FROM AN SD CARD, YOU CAN INCREASE ITS LIFESPAN AS FOLLOWS:
+# IF YOU RUN THE OS FROM A RASPBERRY PI, YOU CAN INCREASE THE STORAGE LIFESPAN AS FOLLOWS:
 
 $sudo swapoff --all
 
 $sudo nano /etc/fstab
+
+# ADD AT THE END:
 
 
 
