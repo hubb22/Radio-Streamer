@@ -282,7 +282,92 @@ $sudo chmod a+x /etc/rc.local
 $sudo reboot now
 
 
-------
+-------------------------------------
+
+
+# ONLY FOR BLUETOOTH AUDIO:
+
+sudo apt update && sudo apt upgrade -y && sudo apt install blueman pulseaudio-module-bluetooth libspa-0.2-bluetooth bluez bluez-tools bluez-firmware -y && sudo reboot now
+
+$bluetoothctl
+
+$agent on
+
+$scan on
+
+$devices
+
+# COPY THE MAC ADDRES OF YOUR DEVICE AND DO:
+
+$pair XX:XX:XX:XX:XX:XX
+
+$connect XX:XX:XX:XX:XX:XX
+
+$trust XX:XX:XX:XX:XX:XX
+
+$quit
+
+$sudo nano /home/YOUR_OS_USER/scripts/streaming.sh
+
+# ADD THE FOLLOWING ON THE LINE AFTER #!/bin/bash:
+
+
+
+#MAC ADDRESS OF YOUR BLUETOOTH DEVICE
+device_address="XX:XX:XX:XX:XX:XX"
+bluetoothctl << EOF
+disconnect $device_address
+EOF
+sleep 3
+bluetoothctl << EOF
+power off
+EOF
+sleep 3
+bluetoothctl << EOF
+power on
+EOF
+sleep 3
+bluetoothctl << EOF
+scan on
+EOF
+sleep 8
+bluetoothctl << EOF
+connect $device_address
+EOF
+sleep 3
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+sudo rm /home/YOUR_OS_USER/scripts/reboot.sh
+
+sudo nano /home/YOUR_OS_USER/scripts/reboot.sh
+
+
+
+#!/bin/bash
+ps -ef | grep streaming.sh | grep -v grep | awk '{print $2}' | xargs kill > /dev/null
+ps -ef | grep ffplay | grep -v grep | awk '{print $2}' | xargs kill > /dev/null
+#MAC ADDRESS OF YOUR BLUETOOTH DEVICE
+device_address="XX:XX:XX:XX:XX:XX"
+bluetoothctl << EOF
+disconnect $device_address
+EOF
+sleep 3
+bluetoothctl << EOF
+power off
+EOF
+/sbin/shutdown -r +1 > /dev/null
+
+
+
+$sudo chmod +x /home/YOUR_OS_USER/scripts/reboot.sh
+
+sudo reboot now
+
+
+-------------------------------------
 
 
 # SHUTDOWN THE RASPBERRY PI WITH A BUTTON:
@@ -302,7 +387,7 @@ dtoverlay=gpio-shutdown
 # HOW TO ADD THE CABLE: https://gilyes.com/images/pi-shutdown-button.png
 
 
-------
+-------------------------------------
 
 
 # BOOTING THE RASPBERRY PI FROM USB (NO SD CARD NEEDED):
@@ -324,7 +409,7 @@ CLONE FROM SD TO USB:
 $sudo dd bs=1m if=/YOUR_USER/PATH/backup.img of=/dev/diskXX
 
 
-------
+-------------------------------------
 
 
 # IF YOU RUN THE OS FROM A RASPBERRY PI, YOU CAN INCREASE THE STORAGE LIFESPAN AS FOLLOWS:
@@ -344,7 +429,7 @@ tmpfs /var/tmp tmpfs nodev,nosuid,size=50M 0 0
 # Press Ctrl + X and save changes (Y)
 
 
-------
+-------------------------------------
 
 
 # RASPBERRY PI CASE PRINTED WITH THESE FILES:
