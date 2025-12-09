@@ -7,15 +7,17 @@ You need:
 2) BalenaEtcher (https://www.balena.io/etcher) or 'dd command' to create a bootable USB:
     $diskutil list
     $diskutil umountDisk /dev/diskXX
-    $sudo dd bs=1m if=YOUR_DEBIAN_IMAGE.img of=/dev/diskXX
+    $sudo dd bs=1m if=YOUR_OS_IMAGE.img of=/dev/diskXX
 
-4) Wi-Fi antenna (if your computer/Raspberry Pi doesn't have one, and want to use this interface): 
+4) Wi-Fi antenna (if your computer or Raspberry Pi doesn't have one and you want to use this interface): https://a.co/d/3hMnroM
 
-5) Bluetooth antenna (if your computer/Raspberry Pi doesn't have one, and want to use this interface): 
+5) Bluetooth antenna (if your computer or Raspberry Pi doesn't have one and you want to use this interface): 
 
-6) USB stick (for Raspberry Pi only): https://a.co/d/9WlAjas
+6) USB stick for Raspberry Pi: https://a.co/d/9WlAjas
 
-7) Shutdown button (for Raspberry Pi only): Micro USB: https://a.co/d/9Fj24Pe or USB C: https://a.co/d/g3vTr5e
+7) Turn off cable for Raspberry Pi: / Micro USB: https://a.co/d/9Fj24Pe / USB C: https://a.co/d/g3vTr5e
+
+8) Shutdown button for Raspberry Pi: https://a.co/d/0t1HdAW / https://a.co/d/g9fruqO / https://a.co/d/1JmqQhr
 
 
 -------------------------------------
