@@ -309,7 +309,7 @@ dtoverlay=gpio-shutdown
 
 https://www.instructables.com/Booting-a-Raspberry-Pi-From-USB-No-SD-Card-Needed/
 
-# FOR OLDER RASPBERRY PI MODELS, CLONE THE SD CARD TO A USB STICK:
+# FOR OLDER RASPBERRY PI MODELS, YOU CAN CLONE THE SD CARD TO A USB STICK TO GAIN PERFORMANCE:
 
 BACKUP FROM SD TO IMAGE:
 
