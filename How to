@@ -27,7 +27,7 @@ You need:
 
 $sudo passwd root
 
-su --login
+$su --login
 
 $sudo apt update && sudo apt upgrade -y
 
@@ -65,11 +65,11 @@ $sudo raspi-config
 #################### ONLY FOR WIFI / BLUETOOTH ####################
 $sudo apt install rfkill
 
-iwconfig
+$iwconfig
 
 $sudo rfkill list
 
-lsusb -vt
+$lsusb -vt
 
 # FIND THE WIFI / BLUETOOTH MODULE(S) AND ADD THEM TO PREVENT ENERGY SAVING, EXAMPLE: 0bda:a743
 
@@ -201,7 +201,7 @@ $sudo systemctl disable apt-daily-upgrade.timer
 
 $sudo systemctl disable apt-daily.timer
 
-date
+$date
 
 $sudo timedatectl set-ntp yes
 
@@ -222,9 +222,9 @@ ps -ef | grep ffplay | grep -v grep | awk '{print $2}' | xargs kill > /dev/null
 
 $sudo chmod +x /home/YOUR_OS_USER/scripts/reboot.sh
 
-su
+$su
 
-crontab -e
+$crontab -e
 
 # PRESS 1
 
