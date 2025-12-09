@@ -2,30 +2,331 @@
 
 You need:
 
-1) If you're building it on a Raspberry Pi you need Raspberry Pi OS Lite: https://www.raspberrypi.com
+1) If you're building it on a Raspberry Pi, you will need 'Raspberry Pi OS Lite': https://www.raspberrypi.com
 
-2) For other computers you need Debian 13 without a GUI: https://www.debian.org
+2) For other computers you will need 'Debian 13' without a GUI: https://www.debian.org
 
 2) BalenaEtcher (https://www.balena.io/etcher) or 'dd command' to create a bootable USB:
     $diskutil list
     $diskutil umountDisk /dev/diskXX
     $sudo dd bs=1m if=YOUR_OS_IMAGE.img of=/dev/diskXX
 
-4) Wi-Fi antenna (If your computer or Raspberry Pi doesn't have one and you want to use this interface): https://a.co/d/3hMnroM
+4) Wi-Fi antenna (If your computer or Raspberry Pi doesn't have one, and you want to use this interface): https://a.co/d/3hMnroM
 
-5) Bluetooth antenna (If your computer or Raspberry Pi doesn't have one and you want to use this interface): https://a.co/d/aCBIa5A
+5) Bluetooth antenna (If your computer or Raspberry Pi doesn't have one, and you want to use this interface): https://a.co/d/aCBIa5A
 
-6) USB stick for Raspberry Pi: https://a.co/d/9WlAjas
+6) USB storage for Raspberry Pi: https://a.co/d/9WlAjas
 
-7) Turn off cable for Raspberry Pi: / Micro USB: https://a.co/d/9Fj24Pe / USB C: https://a.co/d/g3vTr5e
+7) Cable to turn off the Raspberry Pi: / Micro USB: https://a.co/d/9Fj24Pe / USB C: https://a.co/d/g3vTr5e
 
-8) Shutdown button for Raspberry Pi: https://a.co/d/0t1HdAW / https://a.co/d/g9fruqO / https://a.co/d/1JmqQhr
+8) Button to shutdown the Raspberry Pi: https://a.co/d/0t1HdAW / https://a.co/d/g9fruqO / https://a.co/d/1JmqQhr
 
 
 -------------------------------------
 
 
-$
+$sudo passwd root
+
+su --login
+
+$sudo apt update && sudo apt upgrade
+
+$sudo apt install openssh-server -y
+
+$sudo systemctl start ssh && $sudo systemctl enable ssh
+
+$sudo systemctl status ssh
+
+$sudo nano /etc/$sudoers
 
 
 
+# Allow members of group $sudo to execute any command
+%$sudo   ALL=(ALL:ALL) ALL
+YOUR_OS_USER   ALL=(ALL) NOPASSWD:ALL
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+$sudo adduser YOUR_OS_USER $sudo
+
+$exit
+
+#################### ONLY FOR RASPBERRY PI ####################
+$sudo raspi-config
+
+# DISABLE SCREEN BLANKING
+# CHANGE THE LOCALIZATION
+# DISABLE WLAN POWER SAVE
+# EXPAND FILESYSTEM & REBOOT
+
+
+#################### ONLY FOR WIFI / BLUETOOTH ####################
+$sudo apt install rfkill
+
+iwconfig
+
+$sudo rfkill list
+
+lsusb -vt
+
+# FIND THE WIFI / BLUETOOTH MODULE(S) AND ADD THEM TO PREVENT ENERGY SAVING, EXAMPLE: 0bda:a743
+
+$sudo nano /etc/udev/rules.d/50-usb_power_save.rules
+
+
+
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="a743", ATTR{power/autosuspend}="-1"
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+$sudo rfkill list
+
+$sudo rfkill unblock all
+
+iwconfig
+
+$sudo apt install lshw
+
+$sudo lshw -C network
+
+$sudo iwlist scan | grep SSID
+
+$sudo nano /etc/network/interfaces
+
+
+                                 
+allow-hotplug wlan0
+auto wlan0
+iface wlan0 inet dhcp
+        wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+        dns-nameservers 9.9.9.9 149.112.112.112
+        gateway 10.0.0.1
+        #if-up ifconfig eth0 down
+        #if-down ifconfig eth0 up
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+$sudo apt remove network-manager
+
+$sudo apt install wpasupplicant
+
+$sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+
+
+
+ctrl_interface=/var/run/wpa_supplicant
+ap_scan=1
+fast_reauth=0
+network={
+ssid="YOUR_WIFI_NAME"
+psk="YOUR_WIFI_PASSWORD"
+key_mgmt=WPA-PSK
+}
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+# Do not perform the next steps over SSH
+
+$sudo ip link set wlan0 up
+
+$sudo killall wpa_supplicant
+
+$sudo wpa_supplicant -i wlan0 -D wext -c/etc/wpa_supplicant/wpa_supplicant.conf -B
+
+$sudo wpa_cli -i wlan0 reconfigure
+
+$sudo dhcpcd wlan0
+
+#$sudo iw wlan0 link
+
+$sudo rm /etc/resolv.conf
+
+$sudo nano /etc/resolv.conf
+
+
+
+nameserver 9.9.9.9
+nameserver 149.112.112.112
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+$sudo apt install -y resolvconf
+
+$sudo nano /etc/resolvconf/resolv.conf.d/tail
+
+
+
+nameserver 9.9.9.9
+nameserver 149.112.112.112
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+$sudo reboot now
+
+$ip -c addr show
+
+$sudo apt update && $sudo apt upgrade -y
+
+$sudo apt install ufw ffmpeg -y
+
+$sudo ufw default deny incoming && $sudo ufw default allow outgoing && $sudo ufw allow from 192.168.1.0/24 to any port 22 && $sudo ufw allow from 10.0.0.0/24 to any port 22 && $sudo ufw allow 123/udp && $sudo ufw allow out 123/udp && $sudo ufw allow out 53
+
+$sudo ufw show added
+
+$sudo ufw enable
+
+$sudo systemctl disable apt-daily-upgrade.timer
+
+$sudo systemctl disable apt-daily.timer
+
+date
+
+$sudo timedatectl set-ntp yes
+
+$sudo mkdir /home/YOUR_OS_USER/scripts
+
+$sudo nano /home/YOUR_OS_USER/scripts/reboot.sh
+
+
+
+#!/bin/bash
+ps -ef | grep streaming.sh | grep -v grep | awk '{print $2}' | xargs kill > /dev/null
+ps -ef | grep ffplay | grep -v grep | awk '{print $2}' | xargs kill > /dev/null
+/sbin/shutdown -r +1 > /dev/null
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+$sudo chmod +x /home/YOUR_OS_USER/scripts/reboot.sh
+
+su
+
+crontab -e
+
+# PRESS 1
+
+
+
+29 6 * * 1 /home/YOUR_OS_USER/scripts/reboot.sh > /dev/null
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+$exit
+
+$sudo nano /home/YOUR_OS_USER/scripts/streaming.sh
+
+
+
+#!/bin/bash
+/bin/$sudo killall wpa_supplicant > /dev/null
+/bin/$sudo wpa_supplicant -i wlan0 -D wext -c/etc/wpa_supplicant/wpa_supplicant.conf -B > /dev/null
+/bin/$sudo wpa_cli -i wlan0 reconfigure > /dev/null
+/bin/$sudo dhcpcd wlan0 > /dev/null
+while [ 1 = 1 ]; do
+	### STREAMING ###
+    /bin/ffplay -v 0 -timeout 1000000 -nodisp -autoexit YOUR_RADIO_URL_GOES_HERE > /dev/null
+	### IF THE CONECTION FAILS PERFORM A REBOOT ###
+	if ! ping -c 1 -W 2 9.9.9.9 > /dev/null; then
+		/bin/$sudo /sbin/reboot now > /dev/null
+	fi
+    ### OTHERWISE RESTART THE TRANSMISSION ###
+    sleep 3
+done
+
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+$sudo chmod +x /home/YOUR_OS_USER/scripts/streaming.sh
+
+$sudo nano /etc/rc.local
+
+
+
+#!/bin/bash
+sleep 3 && su - YOUR_OS_USER -c "env DISPLAY=:0.0 nohup  /home/YOUR_OS_USER/scripts/streaming.sh &"
+
+
+# Press Ctrl + X and save changes (Y)
+
+$sudo chmod 755 /etc/rc.local
+
+$sudo chmod a+x /etc/rc.local
+
+$sudo reboot now
+
+
+------
+
+
+# SHUTDOWN A RASPBERRY PI WITH GPIO BUTTON:
+
+$sudo nano /boot/firmware/config.txt
+
+# (ADD AT THE END):
+
+
+
+dtoverlay=gpio-shutdown
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+# HOW TO ADD THE CABLE: https://gilyes.com/images/pi-shutdown-button.png
+
+
+------
+
+
+# BOOTING A RASPBERRY PI FROM USB (NO SD CARD NEEDED):
+
+https://www.instructables.com/Booting-a-Raspberry-Pi-From-USB-No-SD-Card-Needed/
+
+# OLDER RASPBERRY PI, CLONE THE SD CARD TO A USB STICK:
+
+BACKUP FROM SD TO IMAGE:
+
+$diskutil list
+
+$diskutil umountDisk /dev/diskXX
+
+$sudo dd if=/dev/diskXX bs=8M of=/YOUR_USER_PATH/backup.img
+
+CLONE FROM SD TO USB:
+
+$sudo dd bs=1m if=/YOUR_USER/PATH/backup.img of=/dev/diskXX
+
+
+------
+
+
+# OR IF YOU ARE RUNNING THE OS FROM AN SD CARD IN OLDER RASPBERRY PI, YOU CAN INCREASE THE LIFESPAN OF THE SD CARD AS FOLLOWS:
+
+$sudo swapoff --all
+
+$sudo nano /etc/fstab
+
+
+
+tmpfs /var/tmp tmpfs nodev,nosuid,size=50M 0 0
+
+
+
+# Press Ctrl + X and save changes (Y)
