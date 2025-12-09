@@ -287,7 +287,11 @@ $sudo reboot now
 
 # ONLY FOR BLUETOOTH AUDIO:
 
-sudo apt update && sudo apt upgrade -y && sudo apt install blueman pulseaudio-module-bluetooth libspa-0.2-bluetooth bluez bluez-tools bluez-firmware -y && sudo reboot now
+$sudo apt update && sudo apt upgrade -y
+
+$sudo apt install blueman pulseaudio-module-bluetooth libspa-0.2-bluetooth bluez bluez-tools bluez-firmware -y
+
+$sudo reboot now
 
 $bluetoothctl
 
