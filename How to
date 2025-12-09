@@ -313,7 +313,7 @@ $sudo nano /home/YOUR_OS_USER/scripts/streaming.sh
 
 
 
-#MAC ADDRESS OF YOUR BLUETOOTH DEVICE
+# MAC ADDRESS OF YOUR BLUETOOTH DEVICE
 device_address="XX:XX:XX:XX:XX:XX"
 bluetoothctl << EOF
 disconnect $device_address
@@ -349,7 +349,7 @@ sudo nano /home/YOUR_OS_USER/scripts/reboot.sh
 #!/bin/bash
 ps -ef | grep streaming.sh | grep -v grep | awk '{print $2}' | xargs kill > /dev/null
 ps -ef | grep ffplay | grep -v grep | awk '{print $2}' | xargs kill > /dev/null
-#MAC ADDRESS OF YOUR BLUETOOTH DEVICE
+# MAC ADDRESS OF YOUR BLUETOOTH DEVICE
 device_address="XX:XX:XX:XX:XX:XX"
 bluetoothctl << EOF
 disconnect $device_address
