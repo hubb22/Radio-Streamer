@@ -27,6 +27,8 @@ You need:
 
 $sudo passwd root
 
+# ENTER THE NEW PASSWORD FOR ROOT ACCOUNT
+
 $su --login
 
 $sudo apt update && sudo apt upgrade -y
