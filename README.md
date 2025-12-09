@@ -8,4 +8,3 @@ Software used for this project:
 2) FFMPEG, UFW, SSH, RFKILL, LSHW, WPASUPPLICANT, RESOLVCONF, and some custom Bash Scripts.
    
 <br>How to: https://github.com/hubb22/Radio-Streamer/blob/main/How%20to
-![RPI1](https://github.com/user-attachments/assets/080ec78b-4d18-45e4-94bd-206c82c2e440)
