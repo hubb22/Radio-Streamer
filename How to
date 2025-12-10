@@ -185,19 +185,31 @@ $sudo ufw default deny incoming
 
 $sudo ufw default allow outgoing
 
+# SSH CONNECTION. THIS RANGE OF IPS ARE COMMONLY USED IN ETHERNET LOCAL NETWORKS, CUSTOMIZE THEM ACCORDING TO YOUR NEEDS
+
 $sudo ufw allow from 192.168.1.0/24 to any port 22
 
+# SSH CONNECTION. THIS RANGE OF IPS ARE COMMONLY USED IN WI-FI LOCAL NETWORKS, CUSTOMIZE THEM ACCORDING TO YOUR NEEDS
+
 $sudo ufw allow from 10.0.0.0/24 to any port 22
+
+# NTP SYNC CONNECTION
 
 $sudo ufw allow 123/udp
 
 $sudo ufw allow out 123/udp
+
+# DNS CONNECTION
 
 $sudo ufw allow out 53
 
 $sudo ufw show added
 
 $sudo ufw enable
+
+# Press (Y) to enable the firewall
+
+$sudo ufw status
 
 $sudo systemctl disable apt-daily-upgrade.timer
 
