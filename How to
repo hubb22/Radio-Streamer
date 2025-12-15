@@ -55,6 +55,18 @@ $sudo adduser YOUR_OS_USER $sudo
 
 $exit
 
+sudo nano /etc/ssh/sshd_config
+
+
+
+DenyUsers root
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+sudo service ssh restart
+
 #################### ONLY FOR RASPBERRY PI ####################
 $sudo raspi-config
 
