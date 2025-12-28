@@ -57,6 +57,8 @@ $exit
 
 $sudo nano /etc/ssh/sshd_config
 
+# ADD AT THE END:
+
 
 
 DenyUsers root
@@ -76,7 +78,7 @@ $sudo raspi-config
 # EXPAND FILESYSTEM & REBOOT
 
 
-#################### ONLY FOR WIFI / BLUETOOTH ####################
+#################### ONLY FOR WIFI & BLUETOOTH ####################
 $sudo apt install rfkill
 
 $iwconfig
@@ -101,7 +103,9 @@ $sudo rfkill list
 
 $sudo rfkill unblock all
 
-iwconfig
+$iwconfig
+
+# COPY YOUR WI-FI ID, E.G. wlan0
 
 $sudo apt install lshw
 
@@ -370,9 +374,9 @@ sleep 3
 
 # Press Ctrl + X and save changes (Y)
 
-sudo rm /home/YOUR_OS_USER/scripts/reboot.sh
+$sudo rm /home/YOUR_OS_USER/scripts/reboot.sh
 
-sudo nano /home/YOUR_OS_USER/scripts/reboot.sh
+$sudo nano /home/YOUR_OS_USER/scripts/reboot.sh
 
 
 
@@ -396,7 +400,7 @@ EOF
 
 $sudo chmod +x /home/YOUR_OS_USER/scripts/reboot.sh
 
-sudo reboot now
+$sudo reboot now
 
 
 -------------------------------------
