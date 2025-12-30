@@ -193,8 +193,6 @@ $sudo reboot now
 
 $ip -c addr show
 
-$sudo apt update && $sudo apt upgrade -y
-
 $sudo apt install ufw ffmpeg -y
 
 $sudo ufw default deny incoming
@@ -317,8 +315,6 @@ $sudo reboot now
 
 # ONLY FOR BLUETOOTH AUDIO:
 
-$sudo apt update && sudo apt upgrade -y
-
 $sudo apt install blueman pulseaudio-module-bluetooth libspa-0.2-bluetooth bluez bluez-tools bluez-firmware -y
 
 $sudo reboot now
@@ -406,27 +402,7 @@ $sudo reboot now
 -------------------------------------
 
 
-# SHUTDOWN THE RASPBERRY PI WITH A BUTTON:
-
-$sudo nano /boot/firmware/config.txt
-
-# ADD AT THE END:
-
-
-
-dtoverlay=gpio-shutdown
-
-
-
-# Press Ctrl + X and save changes (Y)
-
-# HOW TO ADD THE CABLE: https://gilyes.com/images/pi-shutdown-button.png
-
-
--------------------------------------
-
-
-# BOOTING THE RASPBERRY PI FROM USB (NO SD CARD NEEDED):
+# BOOT THE RASPBERRY PI FROM USB STORAGE (NO SD CARD NEEDED):
 
 https://www.instructables.com/Booting-a-Raspberry-Pi-From-USB-No-SD-Card-Needed/
 
@@ -448,7 +424,7 @@ $sudo dd bs=1m if=/YOUR_USER/PATH/backup.img of=/dev/diskXX
 -------------------------------------
 
 
-# IF YOU RUN THE OS FROM A RASPBERRY PI, YOU CAN INCREASE THE STORAGE LIFESPAN AS FOLLOWS:
+# IF YOU RUN THE OPERATING SYSTEM FROM A RASPBERRY PI, YOU CAN INCREASE THE STORAGE LIFESPAN AS FOLLOWS:
 
 $sudo swapoff --all
 
@@ -463,6 +439,28 @@ tmpfs /var/tmp tmpfs nodev,nosuid,size=50M 0 0
 
 
 # Press Ctrl + X and save changes (Y)
+
+$sudo reboot now
+
+
+-------------------------------------
+
+
+# SHUTDOWN THE RASPBERRY PI WITH A BUTTON:
+
+$sudo nano /boot/firmware/config.txt
+
+# ADD AT THE END:
+
+
+
+dtoverlay=gpio-shutdown
+
+
+
+# Press Ctrl + X and save changes (Y)
+
+# HOW TO PLACE THE CABLE: https://gilyes.com/images/pi-shutdown-button.png
 
 
 -------------------------------------
